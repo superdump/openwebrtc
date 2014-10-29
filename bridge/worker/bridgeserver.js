@@ -97,7 +97,8 @@ server.onaccept = function (event) {
                         sourceInfos.push({
                             "mediaType": mediaType,
                             "label": sources[i].name,
-                            "source": jsonRpc.createObjectRef(sources[i])
+                            "source": jsonRpc.createObjectRef(sources[i]),
+                            "type": ["unknown", "capture", "test"][sources[i].type]
                         });
                         break;
                     }
@@ -107,7 +108,7 @@ server.onaccept = function (event) {
         });
     };
 
-    rpcScope.renderSources = function (audioSources, videoSources, tag) {
+    rpcScope.renderSources = function (audioSources, videoSources, tag, useVideoOverlay) {
 
         var audioRenderer;
         if (audioSources.length > 0) {
@@ -117,16 +118,18 @@ server.onaccept = function (event) {
         var imageServer;
         var videoRenderer;
         if (videoSources.length > 0) {
-            videoRenderer = new owr.ImageRenderer();
+            videoRenderer = useVideoOverlay ? new owr.VideoRenderer({ "tag": tag }) : new owr.ImageRenderer();
             videoRenderer.set_source(videoSources[0]);
 
-            if (nextImageServerPort > imageServerBasePort + 10)
-                nextImageServerPort = imageServerBasePort;
-            imageServer = imageServers[nextImageServerPort];
-            if (!imageServer)
-                imageServer = imageServers[nextImageServerPort] = new owr.ImageServer({ "port": nextImageServerPort });
-            imageServer.add_image_renderer(videoRenderer, tag);
-            nextImageServerPort++;
+            if (!useVideoOverlay) {
+                if (nextImageServerPort > imageServerBasePort + 10)
+                    nextImageServerPort = imageServerBasePort;
+                imageServer = imageServers[nextImageServerPort];
+                if (!imageServer)
+                    imageServer = imageServers[nextImageServerPort] = new owr.ImageServer({ "port": nextImageServerPort });
+                imageServer.add_image_renderer(videoRenderer, tag);
+                nextImageServerPort++;
+            }
         }
 
         var controller = new RenderController(audioRenderer, videoRenderer);
