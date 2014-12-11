@@ -118,7 +118,7 @@ server.onaccept = function (event) {
         var imageServer;
         var videoRenderer;
         if (videoSources.length > 0) {
-            videoRenderer = useVideoOverlay ? new owr.VideoRenderer({ "tag": tag }) : new owr.ImageRenderer();
+            videoRenderer = useVideoOverlay ? new owr.VideoRenderer({ "tag": tag, "width": 1280, "height": 720, "max-framerate": 30.0 }) : new owr.ImageRenderer();
             videoRenderer.set_source(videoSources[0]);
 
             if (!useVideoOverlay) {

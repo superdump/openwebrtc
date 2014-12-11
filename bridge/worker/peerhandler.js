@@ -173,7 +173,9 @@ function PeerHandler(configuration, client, jsonRpc) {
                     "codec_type": owr.CodecType[mdesc.payloads[0].encodingName.toUpperCase()],
                     "clock_rate": mdesc.payloads[0].clockRate,
                     "ccm_fir": !!mdesc.payloads[0].ccmfir,
-                    "nack_pli": !!mdesc.payloads[0].nackpli
+                    "nack_pli": !!mdesc.payloads[0].nackpli,
+                    "width": 1280,
+                    "height": 720
                 });
             mediaSession.set_send_payload(sendPayload);
             mediaSession.set_send_source(mdesc.source);
