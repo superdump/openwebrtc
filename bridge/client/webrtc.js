@@ -1159,8 +1159,8 @@
                 img.style.visibility = "hidden";
 
             var tag = randomString();
-            var useVideoOverlay = !!(global.webkit && global.webkit.messageHandlers
-                && global.webkit.messageHandlers.owr) && video.className.indexOf("owr-overlay-video") != -1;
+            var useVideoOverlay = !!(global.webkit && global.webkit.messageHandlers &&
+                global.webkit.messageHandlers.owr)/* && video.className.indexOf("owr-overlay-video") != -1*/;
 
             bridge.renderSources(audioSources, videoSources, tag, useVideoOverlay, function (renderInfo) {
                 var count = Math.round(Math.random() * 100000);
