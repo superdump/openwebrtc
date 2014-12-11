@@ -175,7 +175,8 @@ function PeerHandler(configuration, client, jsonRpc) {
                     "ccm_fir": !!mdesc.payloads[0].ccmfir,
                     "nack_pli": !!mdesc.payloads[0].nackpli,
                     "width": 1280,
-                    "height": 720
+                    "height": 720,
+                    "framerate": 30.0
                 });
             mediaSession.set_send_payload(sendPayload);
             mediaSession.set_send_source(mdesc.source);
