@@ -1994,6 +1994,8 @@ static void setup_video_receive_elements(GstPad *new_pad, guint32 session_id, Ow
     rtpdepay = _owr_payload_create_payload_depacketizer(payload);
     g_snprintf(name, OWR_OBJECT_NAME_LENGTH_MAX, "videorepair1_%u", session_id);
     videorepair1 = gst_element_factory_make("videorepair", name);
+    g_object_set(videorepair1, "drop-until-intra", FALSE, NULL);
+
     g_object_get(payload, "codec-type", &codec_type, NULL);
     parser = _owr_payload_create_parser(payload);
     decoder = _owr_payload_create_decoder(payload);
