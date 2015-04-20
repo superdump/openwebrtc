@@ -379,6 +379,8 @@ static void owr_transport_agent_init(OwrTransportAgent *transport_agent)
     priv->agent_id = next_transport_agent_id++;
     priv->nice_agent = NULL;
 
+    nice_debug_enable(FALSE);
+
     priv->sessions = g_hash_table_new_full(g_direct_hash, g_direct_equal, NULL, g_object_unref);
     priv->pending_sessions = g_hash_table_new_full(g_direct_hash, g_direct_equal, NULL, g_free);
     g_mutex_init(&priv->sessions_lock);
