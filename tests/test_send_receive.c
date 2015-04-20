@@ -236,14 +236,14 @@ int main(int argc, char **argv)
     owr_transport_agent_add_local_address(send_transport_agent, "127.0.0.1");
 
     if (!disable_video) {
-        recv_session_video = owr_media_session_new(FALSE);
-        send_session_video = owr_media_session_new(TRUE);
+        recv_session_video = owr_media_session_new(TRUE);
+        send_session_video = owr_media_session_new(FALSE);
         g_print("Created recv_session_video: %p\n", recv_session_video);
         g_print("Created send_session_video: %p\n", send_session_video);
     }
     if (!disable_audio) {
-        recv_session_audio = owr_media_session_new(FALSE);
-        send_session_audio = owr_media_session_new(TRUE);
+        recv_session_audio = owr_media_session_new(TRUE);
+        send_session_audio = owr_media_session_new(FALSE);
         g_print("Created recv_session_audio: %p\n", recv_session_audio);
         g_print("Created send_session_audio: %p\n", send_session_audio);
     }
