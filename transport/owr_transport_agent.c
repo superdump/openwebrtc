@@ -1686,6 +1686,8 @@ static void on_new_selected_pair(NiceAgent *nice_agent, guint stream_id, guint c
     PendingSessionInfo *pending_session_info;
 
     OWR_UNUSED(nice_agent);
+    OWR_UNUSED(lcandidate);
+    OWR_UNUSED(rcandidate);
 
     g_return_if_fail(OWR_IS_TRANSPORT_AGENT(transport_agent));
 
