@@ -188,7 +188,8 @@ static GstCaps * on_rtpbin_request_pt_map(GstElement *rtpbin, guint session_id, 
 static GstElement * on_rtpbin_request_aux_sender(GstElement *rtpbin, guint session_id, OwrTransportAgent *transport_agent);
 static GstElement * on_rtpbin_request_aux_receiver(GstElement *rtpbin, guint session_id, OwrTransportAgent *transport_agent);
 static void on_dtls_enc_key_set(GstElement *dtls_srtp_enc, AgentAndSessionIdPair *data);
-static void on_new_selected_pair(NiceAgent *nice_agent, NiceCandidate *candidate, OwrTransportAgent *transport_agent);
+static void on_new_selected_pair(NiceAgent *nice_agent, guint stream_id, guint component_id,
+    NiceCandidate *lcandidate, NiceCandidate *rcandidate, OwrTransportAgent *transport_agent);
 
 static gboolean on_sending_rtcp(GObject *session, GstBuffer *buffer, gboolean early, OwrTransportAgent *agent);
 static void on_receiving_rtcp(GObject *session, GstBuffer *buffer, OwrTransportAgent *agent);
@@ -1678,18 +1679,15 @@ static void on_candidate_gathering_done(NiceAgent *nice_agent, guint stream_id, 
     _owr_schedule_with_hash_table((GSourceFunc)emit_candidate_gathering_done, args);
 }
 
-static void on_new_selected_pair(NiceAgent *nice_agent, NiceCandidate *candidate, OwrTransportAgent *transport_agent)
+static void on_new_selected_pair(NiceAgent *nice_agent, guint stream_id, guint component_id,
+    NiceCandidate *lcandidate, NiceCandidate *rcandidate, OwrTransportAgent *transport_agent)
 {
     OwrSession *session;
     PendingSessionInfo *pending_session_info;
-    guint stream_id, component_id;
 
     OWR_UNUSED(nice_agent);
 
     g_return_if_fail(OWR_IS_TRANSPORT_AGENT(transport_agent));
-
-    stream_id = candidate->stream_id;
-    component_id = candidate->component_id;
 
     session = get_session(transport_agent, stream_id);
     g_return_if_fail(OWR_IS_MEDIA_SESSION(session));
