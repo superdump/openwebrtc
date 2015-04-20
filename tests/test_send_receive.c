@@ -43,8 +43,10 @@
 #include <string.h>
 
 static OwrTransportAgent *recv_transport_agent = NULL;
+static OwrMediaSession *recv_session_audio = NULL;
 static OwrMediaSession *recv_session_video = NULL;
 static OwrTransportAgent *send_transport_agent = NULL;
+static OwrMediaSession *send_session_audio = NULL;
 static OwrMediaSession *send_session_video = NULL;
 static OwrMediaRenderer *video_renderer = NULL;
 static OwrMediaRenderer *remote_video_renderer = NULL;
