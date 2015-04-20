@@ -222,6 +222,7 @@ int main(int argc, char **argv)
 
     recv_transport_agent = owr_transport_agent_new(FALSE);
     g_assert(OWR_IS_TRANSPORT_AGENT(recv_transport_agent));
+    g_print("Created recv_transport_agent: %p\n", recv_transport_agent);
 
     owr_transport_agent_set_local_port_range(recv_transport_agent, 5000, 5999);
     owr_transport_agent_add_local_address(recv_transport_agent, "127.0.0.1");
@@ -229,6 +230,7 @@ int main(int argc, char **argv)
     // SEND
     send_transport_agent = owr_transport_agent_new(TRUE);
     g_assert(OWR_IS_TRANSPORT_AGENT(send_transport_agent));
+    g_print("Created send_transport_agent: %p\n", send_transport_agent);
 
     owr_transport_agent_set_local_port_range(send_transport_agent, 5000, 5999);
     owr_transport_agent_add_local_address(send_transport_agent, "127.0.0.1");
@@ -236,10 +238,14 @@ int main(int argc, char **argv)
     if (!disable_video) {
         recv_session_video = owr_media_session_new(FALSE);
         send_session_video = owr_media_session_new(TRUE);
+        g_print("Created recv_session_video: %p\n", recv_session_video);
+        g_print("Created send_session_video: %p\n", send_session_video);
     }
     if (!disable_audio) {
         recv_session_audio = owr_media_session_new(FALSE);
         send_session_audio = owr_media_session_new(TRUE);
+        g_print("Created recv_session_audio: %p\n", recv_session_audio);
+        g_print("Created send_session_audio: %p\n", send_session_audio);
     }
 
     if (!disable_video) {
