@@ -1694,7 +1694,7 @@ static void on_new_selected_pair(NiceAgent *nice_agent, NiceCandidate *candidate
     session = get_session(transport_agent, stream_id);
     g_return_if_fail(OWR_IS_MEDIA_SESSION(session));
 
-    g_print("new selected pair %p %p %p %u %u\n", transport_agent, media_session, nice_agent, stream_id, component_id);
+    g_print("new selected pair %p %p %p %u %u\n", transport_agent, session, nice_agent, stream_id, component_id);
     g_mutex_lock(&transport_agent->priv->sessions_lock);
     pending_session_info = g_hash_table_lookup(transport_agent->priv->pending_sessions, GUINT_TO_POINTER(stream_id));
     if (pending_session_info) {
