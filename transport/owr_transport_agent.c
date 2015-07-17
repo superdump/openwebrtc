@@ -393,7 +393,8 @@ static void owr_transport_agent_init(OwrTransportAgent *transport_agent)
 
     g_return_if_fail(_owr_is_initialized());
 
-    priv->nice_agent = nice_agent_new(_owr_get_main_context(), NICE_COMPATIBILITY_RFC5245);
+    priv->nice_agent = nice_agent_new(_owr_get_main_context(),
+        NICE_COMPATIBILITY_RFC5245, NICE_COMPATIBILITY_RFC5245);
     g_object_bind_property(transport_agent, "ice-controlling-mode", priv->nice_agent,
         "controlling-mode", G_BINDING_SYNC_CREATE);
     g_signal_connect(G_OBJECT(priv->nice_agent), "new-candidate-full",
