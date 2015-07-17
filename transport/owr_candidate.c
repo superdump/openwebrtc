@@ -358,10 +358,6 @@ OwrCandidate * _owr_candidate_new_from_nice_candidate(NiceCandidate *nice_candid
     case NICE_CANDIDATE_TRANSPORT_TCP_PASSIVE:
         transport_type = OWR_TRANSPORT_TYPE_TCP_PASSIVE;
         break;
-
-    case NICE_CANDIDATE_TRANSPORT_TCP_SO:
-        transport_type = OWR_TRANSPORT_TYPE_TCP_SO;
-        break;
     }
     g_return_val_if_fail(transport_type != (OwrTransportType)-1, NULL);
 
@@ -451,10 +447,6 @@ NiceCandidate * _owr_candidate_to_nice_candidate(OwrCandidate *candidate)
 
     case OWR_TRANSPORT_TYPE_TCP_PASSIVE:
         transport = NICE_CANDIDATE_TRANSPORT_TCP_PASSIVE;
-        break;
-
-    case OWR_TRANSPORT_TYPE_TCP_SO:
-        transport = NICE_CANDIDATE_TRANSPORT_TCP_SO;
         break;
 
     default:
