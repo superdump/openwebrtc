@@ -669,8 +669,10 @@ static void update_helper_servers(OwrTransportAgent *transport_agent, guint stre
     g_return_if_fail(OWR_IS_TRANSPORT_AGENT(transport_agent));
     priv = transport_agent->priv;
 
+/*
     nice_agent_forget_relays(priv->nice_agent, stream_id, NICE_COMPONENT_TYPE_RTP);
     nice_agent_forget_relays(priv->nice_agent, stream_id, NICE_COMPONENT_TYPE_RTCP);
+*/
 
     for (item = priv->helper_server_infos; item; item = item->next) {
         helper_server_info = item->data;
