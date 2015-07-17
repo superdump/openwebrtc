@@ -60,6 +60,7 @@
 
 #include <agent.h>
 #include <interfaces.h>
+#include <gio/gio.h>
 #include <gst/app/gstappsink.h>
 #include <gst/app/gstappsrc.h>
 #include <gst/gst.h>
